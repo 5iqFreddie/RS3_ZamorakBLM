@@ -1,4 +1,4 @@
-# RS3 Zamorak BLM Calculator
+# RS3 Zamorak Bad Luck Mitigation  Calculator
 
 A small **.NET 10 console application** for calculating the rare-drop rate of **Zamorak, Lord of Chaos** in RuneScape 3.
 
