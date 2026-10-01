@@ -5,7 +5,7 @@
 ### Zamorak, Lord of Chaos: Bad Luck Mitigation Calculator
 
 [![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?style=for-the-badge)](https://dotnet.microsoft.com/)
-[![Status](https://img.shields.io/badge/Status-Early%20Development-orange?style=for-the-badge)]()
+![Status](https://img.shields.io/badge/Status-Early%20Development-orange?style=for-the-badge)
 
 **A standalone calculator for validating Zamorak's Bad Luck Mitigation mechanics.**
 
