@@ -13,8 +13,10 @@ public static class Program
            EnrageData.Brackets[11]
            ];
 
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(".______    __      .___  ___.      ______     ___       __        ______ \r\n|   _  \\  |  |     |   \\/   |     /      |   /   \\     |  |      /      |\r\n|  |_)  | |  |     |  \\  /  |    |  ,----'  /  ^  \\    |  |     |  ,----'\r\n|   _  <  |  |     |  |\\/|  |    |  |      /  /_\\  \\   |  |     |  |     \r\n|  |_)  | |  `----.|  |  |  |    |  `----./  _____  \\  |  `----.|  `----.\r\n|______/  |_______||__|  |__|     \\______/__/     \\__\\ |_______| \\______|\r\n");
+        Console.ResetColor();
         var accumulatedBLM = 0;
-
         for (var kill = 0; kill < kills.Length; kill++)
         {
             var bracket = kills[kill];
