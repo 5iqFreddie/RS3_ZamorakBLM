@@ -7,7 +7,7 @@ public static class Program
 
     public static void Menu()
     {
-        string[] options = 
+        string[] options =
         [
             "Calculate BLM",
             "View Current Drop Chances",
@@ -25,15 +25,19 @@ public static class Program
         while (true)
         {
             Console.Clear();
+
             Logo();
+
             Console.OutputEncoding = Encoding.UTF8;
+            Console.CursorVisible = false;
+
             Console.WriteLine(
                 """"
                 =================================================
                                  Menu options
                 =================================================
 
-                Use arrow key ↑/↓ to navigate, Enter ⏎ to select:
+                Use arrow key ↑/↓ to navigate, use Enter ⏎ or Right Arrow → to select:
 
                 """");
 
@@ -67,6 +71,35 @@ public static class Program
                     selectedOption++;
                     if (selectedOption >= options.Length)
                         selectedOption = 0;
+                    break;
+
+
+                case ConsoleKey.Enter or ConsoleKey.RightArrow:
+                    switch (selectedOption)
+                    {
+                        case 0:
+                            //Calculate BLM
+                            break;
+
+                        case 1:
+                            //View Current Dropchances
+                            break;
+
+                        case 2:
+                            //View Kill History
+                            break;
+
+                        case 3:
+                            //Reset BLM
+                            break;
+
+                        case 4:
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine($"\nShutting down\n");
+                            Console.ResetColor();
+                            Environment.Exit(0);
+                            break;
+                    }
                     break;
             }
         }
