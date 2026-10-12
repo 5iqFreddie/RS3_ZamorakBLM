@@ -14,7 +14,6 @@ public static class Program
             |   _  < |  |     |  |\/|  |   |  |      /  /_\  \  |  |     |  |     
             |  |_)  ||  `----.|  |  |  |   |  `----./  _____  \ |  `----.|  `----.
             |______/ |_______||__|  |__|    \______/__/     \__\|_______| \______|
-            ######################################################################
 
             """
             );
@@ -45,11 +44,11 @@ public static class Program
 
             Console.WriteLine(
                 """"
-                =================================================
-                                 Menu options
-                =================================================
+                ======================================================================
+                                             Menu options
+                ======================================================================
 
-                Use arrow key ↑/↓ to navigate, use Enter ⏎ or Right Arrow → to select:
+                ↑/↓ To Navigate   ⏎/→ To Select   Esc To Exit
 
                 """");
 
@@ -90,19 +89,19 @@ public static class Program
                     switch (selectedOption)
                     {
                         case 0:
-                            AddKill();
+                            AddKillMenu();
                             break;
 
                         case 1:
-                            //View Current Dropchances
+                            //ViewDropChances();
                             break;
 
                         case 2:
-                            //View Kill History
+                            //ViewKillHistory();
                             break;
 
                         case 3:
-                            //Reset BLM
+                            //ResetBLM();
                             break;
 
                         case 4:
@@ -117,7 +116,7 @@ public static class Program
         }
     }
 
-    public static void AddKill()
+    public static void AddKillMenu()
     {
         Console.OutputEncoding = Encoding.UTF8;
         Console.CursorVisible = false;
@@ -135,26 +134,27 @@ public static class Program
                 "1000-1249%",
                 "1250-1499%",
                 "1500-1999%",
-                "2000%+"
+                "2000%+",
+                "Undo Kill"
             ];
+
+        List<EnrageBracket> bracket;
 
 
         var selectedOption = 0;
         while (true)
         {
             Console.Clear();
+            Logo();
 
             Console.WriteLine(
                 """"
-                =================================================
-                                 ADD A KILL
-                =================================================
+                ======================================================================
+                                              Add a kill
+                ======================================================================
+                **Story, Normal & Enrage (0-99%) don't count towards BLM**
 
-                ↑/↓ Navigate
-                ⏎ To Select
-                Esc To Return
-
-                ###Story, Normal & Enrage (0-99%) don't count twoards BLM###
+                ↑/↓ To Navigate   ⏎/→ To Select   Esc/← To Return
 
                 """");
 
@@ -180,15 +180,30 @@ public static class Program
             {
                 case ConsoleKey.UpArrow:
                     selectedOption--;
+                    if (selectedOption < 0)
+                        selectedOption = options.Length - 1;
                     break;
 
                 case ConsoleKey.DownArrow:
                     selectedOption++;
+                    if (selectedOption >= options.Length)
+                        selectedOption = 0;
                     break;
 
-                case ConsoleKey.Enter:
+                case ConsoleKey.Enter or ConsoleKey.RightArrow:
+                    //Add kill to List<EnrageBracket>
+                    Console.WriteLine($"""
 
+                        Kill added
+                        
+                        Press any button...
+                        """);
+                    Console.ReadKey();
                     break;
+                    
+
+                case ConsoleKey.Escape or ConsoleKey.LeftArrow:
+                    return;
             }
         }
         
@@ -198,55 +213,4 @@ public static class Program
     {
         Menu();
     }
-
-
 }
-
-
-
-//EnrageBracket[] kills = 
-//    [
-//   EnrageData.Brackets[5],
-//   EnrageData.Brackets[6],
-//   EnrageData.Brackets[8],
-//   EnrageData.Brackets[9],
-//   EnrageData.Brackets[11]
-//   ];
-
-//var accumulatedBLM = 0;
-
-//for (var kill = 0; kill < kills.Length; kill++)
-//{
-//    var bracket = kills[kill];
-
-//    accumulatedBLM += bracket.Decrement;
-
-//    var isBLMActive =
-//        kill >= 10 && bracket.Enrage >= 100;
-
-//    if (isBLMActive)
-//        accumulatedBLM += bracket.Decrement;
-
-
-//    var currentDropRate = BlmCalculator.CalcDropRate(accumulatedBLM, bracket);
-//    var killWithBLM = kill + 1;
-//    var enrage = bracket.Enrage;
-//    var decrementFromKill = bracket.Decrement;
-//    var baseDropChance = bracket.BaseChance;
-//    var bracketMaxBLM = bracket.MaximumChance;
-
-//    Console.WriteLine($"""
-
-//        |kill:   {killWithBLM}
-//        |Enrage: {enrage}%
-//        |
-//        |BLM From kill:   {decrementFromKill}
-//        |Accumulated BLM: {accumulatedBLM}
-//        |
-//        |Base Drop Chance:           1/{baseDropChance}
-//        |Current Drop chance:        1/{currentDropRate}
-//        |BLM Cap For Current Enrage: 1/{bracketMaxBLM}
-//        |_______________________________________________
-//        """
-//    );
-//}
